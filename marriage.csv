@@ -1,0 +1,391 @@
+﻿year;emirate;Time;age group;gender;counts
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+2016;Ajman;;17 or less;Male;0
+2016;Ajman;;17 or less;Female;0
+2016;Ajman;;18 - 20;Male;32
+2016;Ajman;;18 - 20;Female;142
+2016;Ajman;;21 - 25;Male;227
+2016;Ajman;;21 - 25;Female;305
+2016;Ajman;;26 - 30;Female;179
+2016;Ajman;;26 - 30;Male;251
+2016;Ajman;;31 - 35;Female;91
+2016;Ajman;;31 - 35;Male;144
+2016;Ajman;;36 - 40;Female;32
+2016;Ajman;;36 - 40;Male;57
+2016;Ajman;;41 - 45;Female;16
+2016;Ajman;;41 - 45;Male;30
+2016;Ajman;;46 - 50;Female;7
+2016;Ajman;;46 - 50;Male;13
+2016;Ajman;;51 - 55;Female;4
+2016;Ajman;;51 - 55;Male;13
+2016;Ajman;;56 - 60;Male;13
+2016;Ajman;;56 - 60;Female;0
+2016;Ajman;;61 or more;Female;1
+2016;Ajman;;61 or more;Male;9
+2016;Ajman;;Unknown;Male;15
+2016;Ajman;;Unknown;Female;27
+2016;Fujairah;;17 or less;Male;0
+2016;Fujairah;;17 or less;Female;0
+2016;Fujairah;;18 - 20;Male;13
+2016;Fujairah;;18 - 20;Female;66
+2016;Fujairah;;21 - 25;Male;163
+2016;Fujairah;;21 - 25;Female;177
+2016;Fujairah;;26 - 30;Female;65
+2016;Fujairah;;26 - 30;Male;110
+2016;Fujairah;;31 - 35;Female;31
+2016;Fujairah;;31 - 35;Male;41
+2016;Fujairah;;36 - 40;Female;13
+2016;Fujairah;;36 - 40;Male;21
+2016;Fujairah;;41 - 45;Female;9
+2016;Fujairah;;41 - 45;Male;13
+2016;Fujairah;;46 - 50;Female;3
+2016;Fujairah;;46 - 50;Male;6
+2016;Fujairah;;51 - 55;Female;1
+2016;Fujairah;;51 - 55;Male;5
+2016;Fujairah;;56 - 60;Male;1
+2016;Fujairah;;56 - 60;Female;0
+2016;Fujairah;;61 or more;Female;1
+2016;Fujairah;;61 or more;Male;2
+2016;Fujairah;;Unknown;Female;9
+2016;Fujairah;;Unknown;Male;0
+2016;Sharjah;;17 or less;Male;0
+2016;Sharjah;;17 or less;Female;0
+2016;Sharjah;;18 - 20;Male;46
+2016;Sharjah;;18 - 20;Female;277
+2016;Sharjah;;21 - 25;Male;603
+2016;Sharjah;;21 - 25;Female;768
+2016;Sharjah;;26 - 30;Female;424
+2016;Sharjah;;26 - 30;Male;650
+2016;Sharjah;;31 - 35;Female;185
+2016;Sharjah;;31 - 35;Male;254
+2016;Sharjah;;36 - 40;Female;80
+2016;Sharjah;;36 - 40;Male;127
+2016;Sharjah;;41 - 45;Female;42
+2016;Sharjah;;41 - 45;Male;57
+2016;Sharjah;;46 - 50;Female;15
+2016;Sharjah;;46 - 50;Male;40
+2016;Sharjah;;51 - 55;Female;4
+2016;Sharjah;;51 - 55;Male;22
+2016;Sharjah;;56 - 60;Female;5
+2016;Sharjah;;56 - 60;Male;10
+2016;Sharjah;;61 or more;Female;1
+2016;Sharjah;;61 or more;Male;20
+2016;Sharjah;;Unknown;Female;28
+2016;Sharjah;;Unknown;Male;0
+2016;Umm Al - Quwain;;17 or less;Male;0
+2016;Umm Al - Quwain;;17 or less;Female;0
+2016;Umm Al - Quwain;;18 - 20;Male;7
+2016;Umm Al - Quwain;;18 - 20;Female;25
+2016;Umm Al - Quwain;;21 - 25;Male;53
+2016;Umm Al - Quwain;;21 - 25;Female;80
+2016;Umm Al - Quwain;;26 - 30;Female;36
+2016;Umm Al - Quwain;;26 - 30;Male;60
+2016;Umm Al - Quwain;;31 - 35;Female;18
+2016;Umm Al - Quwain;;31 - 35;Male;26
+2016;Umm Al - Quwain;;36 - 40;Female;9
+2016;Umm Al - Quwain;;36 - 40;Male;13
+2016;Umm Al - Quwain;;41 - 45;Male;6
+2016;Umm Al - Quwain;;41 - 45;Female;6
+2016;Umm Al - Quwain;;46 - 50;Male;5
+2016;Umm Al - Quwain;;46 - 50;Female;0
+2016;Umm Al - Quwain;;51 - 55;Male;3
+2016;Umm Al - Quwain;;51 - 55;Female;0
+2016;Umm Al - Quwain;;56 - 60;Male;2
+2016;Umm Al - Quwain;;56 - 60;Female;0
+2016;Umm Al - Quwain;;61 or more;Male;2
+2016;Umm Al - Quwain;;61 or more;Female;0
+2016;Umm Al - Quwain;;Unknown;Female;3
+2016;Umm Al - Quwain;;Unknown;Male;0
+2016;Dubai;;Unknown;Female;77
+2017;Dubai;;Unknown;Male;129
+2017;Dubai;;Unknown;Female;75
+2017;Dubai;;Unknown;Male;56
+2017;Ajman;;17 or less;Male;0
+2017;Ajman;;17 or less;Female;0
+2017;Ajman;;18 - 20;Male;16
+2017;Ajman;;18 - 20;Female;134
+2017;Ajman;;21 - 25;Male;256
+2017;Ajman;;21 - 25;Female;341
+2017;Ajman;;26 - 30;Female;214
+2017;Ajman;;26 - 30;Male;308
+2017;Ajman;;31 - 35;Female;104
+2017;Ajman;;31 - 35;Male;146
+2017;Ajman;;36 - 40;Female;67
+2017;Ajman;;36 - 40;Male;84
+2017;Ajman;;41 - 45;Female;28
+2017;Ajman;;41 - 45;Male;41
+2017;Ajman;;46 - 50;Female;16
+2017;Ajman;;46 - 50;Male;39
+2017;Ajman;;51 - 55;Female;4
+2017;Ajman;;51 - 55;Male;18
+2017;Ajman;;56 - 60;Female;2
+2017;Ajman;;56 - 60;Male;11
+2017;Ajman;;61 or more;Male;17
+2017;Ajman;;61 or more;Female;0
+2017;Ajman;;Unknown;Male;1
+2017;Ajman;;Unknown;Female;27
+2017;Fujairah;;17 or less;Male;0
+2017;Fujairah;;17 or less;Female;0
+2017;Fujairah;;18 - 20;Male;26
+2017;Fujairah;;18 - 20;Female;146
+2017;Fujairah;;21 - 25;Female;298
+2017;Fujairah;;21 - 25;Male;301
+2017;Fujairah;;26 - 30;Female;143
+2017;Fujairah;;26 - 30;Male;242
+2017;Fujairah;;31 - 35;Female;69
+2017;Fujairah;;31 - 35;Male;77
+2017;Fujairah;;36 - 40;Male;36
+2017;Fujairah;;36 - 40;Female;37
+2017;Fujairah;;41 - 45;Female;9
+2017;Fujairah;;41 - 45;Male;13
+2017;Fujairah;;46 - 50;Female;2
+2017;Fujairah;;46 - 50;Male;8
+2017;Fujairah;;51 - 55;Female;4
+2017;Fujairah;;51 - 55;Male;11
+2017;Fujairah;;56 - 60;Male;3
+2017;Fujairah;;56 - 60;Female;0
+2017;Fujairah;;61 or more;Female;1
+2017;Fujairah;;61 or more;Male;8
+2017;Fujairah;;Unknown;Female;16
+2017;Fujairah;;Unknown;Male;0
+2017;Sharjah;;17 or less;Male;0
+2017;Sharjah;;17 or less;Female;0
+2017;Sharjah;;18 - 20;Male;36
+2017;Sharjah;;18 - 20;Female;274
+2017;Sharjah;;21 - 25;Male;633
+2017;Sharjah;;21 - 25;Female;849
+2017;Sharjah;;26 - 30;Female;439
+2017;Sharjah;;26 - 30;Male;709
+2017;Sharjah;;31 - 35;Female;225
+2017;Sharjah;;31 - 35;Male;320
+2017;Sharjah;;36 - 40;Female;120
+2017;Sharjah;;36 - 40;Male;153
+2017;Sharjah;;41 - 45;Female;38
+2017;Sharjah;;41 - 45;Male;72
+2017;Sharjah;;46 - 50;Female;26
+2017;Sharjah;;46 - 50;Male;44
+2017;Sharjah;;51 - 55;Female;6
+2017;Sharjah;;51 - 55;Male;35
+2017;Sharjah;;56 - 60;Female;1
+2017;Sharjah;;56 - 60;Male;7
+2017;Sharjah;;61 or more;Male;12
+2017;Sharjah;;61 or more;Female;0
+2017;Sharjah;;Unknown;Female;43
+2017;Sharjah;;Unknown;Male;0
+2017;Umm Al - Quwain;;17 or less;Male;0
+2017;Umm Al - Quwain;;17 or less;Female;0
+2017;Umm Al - Quwain;;18 - 20;Male;3
+2017;Umm Al - Quwain;;18 - 20;Female;27
+2017;Umm Al - Quwain;;21 - 25;Male;47
+2017;Umm Al - Quwain;;21 - 25;Female;85
+2017;Umm Al - Quwain;;26 - 30;Female;37
+2017;Umm Al - Quwain;;26 - 30;Male;71
+2017;Umm Al - Quwain;;31 - 35;Female;19
+2017;Umm Al - Quwain;;31 - 35;Male;36
+2017;Umm Al - Quwain;;36 - 40;Female;9
+2017;Umm Al - Quwain;;36 - 40;Male;15
+2017;Umm Al - Quwain;;41 - 45;Female;4
+2017;Umm Al - Quwain;;41 - 45;Male;8
+2017;Umm Al - Quwain;;46 - 50;Female;2
+2017;Umm Al - Quwain;;46 - 50;Male;3
+2017;Umm Al - Quwain;;61 or more;Male;1
+2017;Umm Al - Quwain;;61 or more;Female;0
+2017;Umm Al - Quwain;;Unknown;Female;1
+2017;Umm Al - Quwain;;Unknown;Male;0
+2017;Ajman;;17 or less;Male;0
+2018;Ajman;;17 or less;Female;0
+2018;Ajman;;18 - 20;Male;10
+2018;Ajman;;18 - 20;Female;143
+2018;Ajman;;21 - 25;Male;236
+2018;Ajman;;21 - 25;Female;359
+2018;Ajman;;26 - 30;Female;217
+2018;Ajman;;26 - 30;Male;322
+2018;Ajman;;31 - 35;Female;98
+2018;Ajman;;31 - 35;Male;173
+2018;Ajman;;36 - 40;Female;58
+2018;Ajman;;36 - 40;Male;86
+2018;Ajman;;41 - 45;Female;27
+2018;Ajman;;41 - 45;Male;55
+2018;Ajman;;46 - 50;Female;17
+2018;Ajman;;46 - 50;Male;23
+2018;Ajman;;51 - 55;Female;2
+2018;Ajman;;51 - 55;Male;18
+2018;Ajman;;56 - 60;Female;2
+2018;Ajman;;56 - 60;Male;11
+2018;Ajman;;61 or more;Male;8
+2018;Ajman;;61 or more;Female;0
+2018;Ajman;;Unknown;Female;19
+2018;Ajman;;Unknown;Male;0
+2018;Fujairah;;17 or less;Male;0
+2018;Fujairah;;17 or less;Female;0
+2018;Fujairah;;18 - 20;Male;24
+2018;Fujairah;;18 - 20;Female;131
+2018;Fujairah;;21 - 25;Female;292
+2018;Fujairah;;21 - 25;Male;301
+2018;Fujairah;;26 - 30;Female;119
+2018;Fujairah;;26 - 30;Male;194
+2018;Fujairah;;31 - 35;Female;63
+2018;Fujairah;;31 - 35;Male;67
+2018;Fujairah;;36 - 40;Female;21
+2018;Fujairah;;36 - 40;Male;34
+2018;Fujairah;;41 - 45;Male;9
+2018;Fujairah;;41 - 45;Female;9
+2018;Fujairah;;46 - 50;Female;3
+2018;Fujairah;;46 - 50;Male;9
+2018;Fujairah;;51 - 55;Female;1
+2018;Fujairah;;51 - 55;Male;5
+2018;Fujairah;;56 - 60;Male;5
+2018;Fujairah;;56 - 60;Female;0
+2018;Fujairah;;61 or more;Female;1
+2018;Fujairah;;61 or more;Male;7
+2018;Fujairah;;Unknown;Female;15
+2018;Fujairah;;Unknown;Male;0
+2018;Sharjah;;17 or less;Male;0
+2018;Sharjah;;17 or less;Female;0
+2018;Sharjah;;18 - 20;Male;43
+2018;Sharjah;;18 - 20;Female;279
+2018;Sharjah;;21 - 25;Male;616
+2018;Sharjah;;21 - 25;Female;826
+2018;Sharjah;;26 - 30;Female;462
+2018;Sharjah;;26 - 30;Male;697
+2018;Sharjah;;31 - 35;Female;187
+2018;Sharjah;;31 - 35;Male;299
+2018;Sharjah;;36 - 40;Female;98
+2018;Sharjah;;36 - 40;Male;149
+2018;Sharjah;;41 - 45;Female;63
+2018;Sharjah;;41 - 45;Male;77
+2018;Sharjah;;46 - 50;Female;18
+2018;Sharjah;;46 - 50;Male;40
+2018;Sharjah;;51 - 55;Female;9
+2018;Sharjah;;51 - 55;Male;16
+2018;Sharjah;;56 - 60;Female;2
+2018;Sharjah;;56 - 60;Male;16
+2018;Sharjah;;61 or more;Male;17
+2018;Sharjah;;61 or more;Female;0
+2018;Sharjah;;Unknown;Male;1
+2018;Sharjah;;Unknown;Female;27
+2018;Umm Al - Quwain;;17 or less;Male;0
+2018;Umm Al - Quwain;;17 or less;Female;0
+2018;Umm Al - Quwain;;18 - 20;Female;21
+2018;Umm Al - Quwain;;18 - 20;Male;0
+2018;Umm Al - Quwain;;21 - 25;Male;50
+2018;Umm Al - Quwain;;21 - 25;Female;94
+2018;Umm Al - Quwain;;26 - 30;Female;43
+2018;Umm Al - Quwain;;26 - 30;Male;60
+2018;Umm Al - Quwain;;31 - 35;Female;11
+2018;Umm Al - Quwain;;31 - 35;Male;40
+2018;Umm Al - Quwain;;36 - 40;Female;8
+2018;Umm Al - Quwain;;36 - 40;Male;19
+2018;Umm Al - Quwain;;41 - 45;Female;1
+2018;Umm Al - Quwain;;41 - 45;Male;7
+2018;Umm Al - Quwain;;46 - 50;Female;1
+2018;Umm Al - Quwain;;46 - 50;Male;4
+2018;Umm Al - Quwain;;51 - 55;Male;1
+2018;Umm Al - Quwain;;51 - 55;Female;0
+2018;Umm Al - Quwain;;56 - 60;Male;1
+2018;Umm Al - Quwain;;56 - 60;Female;0
+2018;Umm Al - Quwain;;61 or more;Male;2
+2018;Umm Al - Quwain;;61 or more;Female;0
+2018;Umm Al - Quwain;;Unknown;Female;5
+2018;Umm Al - Quwain;;Unknown;Male;0
+2018;Ajman;;17 or less;Male;0
+2019;Ajman;;17 or less;Female;0
+2019;Ajman;;18 - 20;Male;16
+2019;Ajman;;18 - 20;Female;151
+2019;Ajman;;21 - 25;Male;271
+2019;Ajman;;21 - 25;Female;385
+2019;Ajman;;26 - 30;Female;237
+2019;Ajman;;26 - 30;Male;358
+2019;Ajman;;31 - 35;Female;134
+2019;Ajman;;31 - 35;Male;176
+2019;Ajman;;36 - 40;Female;75
+2019;Ajman;;36 - 40;Male;86
+2019;Ajman;;41 - 45;Female;27
+2019;Ajman;;41 - 45;Male;64
+2019;Ajman;;46 - 50;Female;12
+2019;Ajman;;46 - 50;Male;37
+2019;Ajman;;51 - 55;Female;3
+2019;Ajman;;51 - 55;Male;15
+2019;Ajman;;56 - 60;Female;2
+2019;Ajman;;56 - 60;Male;16
+2019;Ajman;;61 or more;Female;1
+2019;Ajman;;61 or more;Male;12
+2019;Ajman;;Unknown;Female;24
+2019;Ajman;;Unknown;Male;0
+2019;Fujairah;;17 or less;Male;0
+2019;Fujairah;;17 or less;Female;0
+2019;Fujairah;;18 - 20;Male;20
+2019;Fujairah;;18 - 20;Female;119
+2019;Fujairah;;21 - 25;Male;266
+2019;Fujairah;;21 - 25;Female;294
+2019;Fujairah;;26 - 30;Female;115
+2019;Fujairah;;26 - 30;Male;196
+2019;Fujairah;;31 - 35;Female;58
+2019;Fujairah;;31 - 35;Male;78
+2019;Fujairah;;36 - 40;Female;29
+2019;Fujairah;;36 - 40;Male;38
+2019;Fujairah;;41 - 45;Female;7
+2019;Fujairah;;41 - 45;Male;17
+2019;Fujairah;;46 - 50;Female;3
+2019;Fujairah;;46 - 50;Male;9
+2019;Fujairah;;51 - 55;Male;2
+2019;Fujairah;;51 - 55;Female;3
+2019;Fujairah;;56 - 60;Male;5
+2019;Fujairah;;56 - 60;Female;0
+2019;Fujairah;;61 or more;Male;6
+2019;Fujairah;;61 or more;Female;0
+2019;Fujairah;;Unknown;Male;2
+2019;Fujairah;;Unknown;Female;11
+2019;Sharjah;;17 or less;Male;0
+2019;Sharjah;;17 or less;Female;0
+2019;Sharjah;;18 - 20;Male;29
+2019;Sharjah;;18 - 20;Female;207
+2019;Sharjah;;21 - 25;Male;548
+2019;Sharjah;;21 - 25;Female;794
+2019;Sharjah;;26 - 30;Female;389
+2019;Sharjah;;26 - 30;Male;627
+2019;Sharjah;;31 - 35;Female;202
+2019;Sharjah;;31 - 35;Male;282
+2019;Sharjah;;36 - 40;Female;98
+2019;Sharjah;;36 - 40;Male;133
+2019;Sharjah;;41 - 45;Female;50
+2019;Sharjah;;41 - 45;Male;76
+2019;Sharjah;;46 - 50;Female;26
+2019;Sharjah;;46 - 50;Male;39
+2019;Sharjah;;51 - 55;Female;6
+2019;Sharjah;;51 - 55;Male;27
+2019;Sharjah;;56 - 60;Female;3
+2019;Sharjah;;56 - 60;Male;12
+2019;Sharjah;;61 or more;Male;18
+2019;Sharjah;;61 or more;Female;0
+2019;Sharjah;;Unknown;Female;16
+2019;Sharjah;;Unknown;Male;0
+2019;Umm Al - Quwain;;17 or less;Male;0
+2019;Umm Al - Quwain;;17 or less;Female;0
+2019;Umm Al - Quwain;;18 - 20;Male;4
+2019;Umm Al - Quwain;;18 - 20;Female;26
+2019;Umm Al - Quwain;;21 - 25;Male;57
+2019;Umm Al - Quwain;;21 - 25;Female;88
+2019;Umm Al - Quwain;;26 - 30;Female;43
+2019;Umm Al - Quwain;;26 - 30;Male;67
+2019;Umm Al - Quwain;;31 - 35;Female;15
+2019;Umm Al - Quwain;;31 - 35;Male;34
+2019;Umm Al - Quwain;;36 - 40;Female;12
+2019;Umm Al - Quwain;;36 - 40;Male;14
+2019;Umm Al - Quwain;;41 - 45;Male;4
+2019;Umm Al - Quwain;;41 - 45;Female;5
+2019;Umm Al - Quwain;;46 - 50;Male;3
+2019;Umm Al - Quwain;;46 - 50;Female;0
+2019;Umm Al - Quwain;;51 - 55;Female;1
+2019;Umm Al - Quwain;;51 - 55;Male;3
+2019;Umm Al - Quwain;;56 - 60;Male;1
+2019;Umm Al - Quwain;;56 - 60;Female;0
+2019;Umm Al - Quwain;;61 or more;Male;4
+2019;Umm Al - Quwain;;61 or more;Female;0
+2019;Umm Al - Quwain;;Unknown;Female;1
+2019;Umm Al - Quwain;;Unknown;Male;0
+2019;;;;;
