@@ -31,6 +31,4 @@ const pools = dbConfigs.map(cfg =>
   })
 );
 
-const databases = dbConfigs.map(cfg => cfg.database);
-
-module.exports = { pools, databases };
+module.exports = { pools };

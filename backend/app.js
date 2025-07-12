@@ -2,12 +2,53 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const { pools, databases } = require('./db');
+const { pools } = require('./db');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+async function gatherData(sql, params = []) {
+  const map = new Map();
+  for (const pool of pools) {
+    try {
+      const [rows] = await pool.query(sql, params);
+      rows.forEach(r => map.set(r.id, r));
+    } catch (err) {
+      console.error('Option query error', err);
+    }
+  }
+  return Array.from(map.values());
+}
+
+// Options endpoints
+app.get('/api/suppliers', async (req, res) => {
+  const data = await gatherData('SELECT id, name FROM HC_suppliers WHERE is_active = 1');
+  res.json(data);
+});
+
+app.get('/api/administrations', async (req, res) => {
+  const data = await gatherData('SELECT id, alamana FROM HC_alamanat');
+  res.json(data);
+});
+
+app.get('/api/municipalities', async (req, res) => {
+  const { administration } = req.query;
+  if (!administration) return res.json([]);
+  const data = await gatherData('SELECT id, albaldia FROM HC_albaldia WHERE alamana = ?', [administration]);
+  res.json(data);
+});
+
+app.get('/api/establishments', async (req, res) => {
+  const { supplier } = req.query;
+  if (!supplier) return res.json([]);
+  const sql = `SELECT DISTINCT f.id, f.FacilityName FROM HC_Facility f
+               JOIN HC_HealthCertificate hc ON hc.Facility = f.id
+               WHERE hc.Supplier = ?`;
+  const data = await gatherData(sql, [supplier]);
+  res.json(data);
+});
 
 // Advanced search endpoint
 app.post('/api/search', async (req, res) => {
@@ -25,7 +66,7 @@ app.post('/api/search', async (req, res) => {
   for (let i = 0; i < pools.length; i++) {
     const pool = pools[i];
     try {
-      let sql = `SELECT hc.certificateNumber AS CertificateNumber, p.name AS PersonName, ${i} AS dbIndex, hc.status
+      let sql = `SELECT hc.certificateNumber AS CertificateNumber, p.name AS PersonName, ${i + 1} AS dbIndex, hc.status
                  FROM HC_HealthCertificate hc
                  LEFT JOIN HC_Person p ON hc.Person = p.id
                  LEFT JOIN HC_Facility f ON hc.Facility = f.id
@@ -59,7 +100,7 @@ app.post('/api/search', async (req, res) => {
         params.push(fromDate);
       }
       const [rows] = await pool.query(sql, params);
-      rows.forEach(row => results.push({ ...row, database: databases[i] }));
+      rows.forEach(row => results.push(row));
     } catch (err) {
       console.error('DB error', err);
     }
@@ -70,7 +111,7 @@ app.post('/api/search', async (req, res) => {
 // Update status endpoint
 app.post('/api/updateStatus', async (req, res) => {
   const { dbIndex, certificateNumber, status } = req.body;
-  const pool = pools[dbIndex];
+  const pool = pools[dbIndex - 1];
   try {
     await pool.query(
       'UPDATE HC_HealthCertificate SET status = ? WHERE certificateNumber = ?',
