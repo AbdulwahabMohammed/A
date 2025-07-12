@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { exec } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 
 const { pools } = require('./db');
 
@@ -122,6 +125,26 @@ app.post('/api/updateStatus', async (req, res) => {
     console.error('Update error', err);
     res.status(500).json({ success: false });
   }
+});
+
+// GitHub webhook to update repo on push
+app.post('/webhook', (req, res) => {
+  const event = req.get('X-GitHub-Event');
+  const userAgent = req.get('User-Agent') || '';
+  if (req.method !== 'POST' || !event || !userAgent.startsWith('GitHub-Hookshot')) {
+    return res.status(400).send('Invalid request');
+  }
+
+  const repoDir = path.resolve(__dirname, '..');
+  exec('git pull', { cwd: repoDir }, (err, stdout, stderr) => {
+    const logMessage = `${new Date().toISOString()} - pull ${err ? 'failed' : 'success'}\n`;
+    fs.appendFile(path.join(repoDir, 'webhook.log'), logMessage, () => {});
+    if (err) {
+      console.error('Git pull error', err);
+      return res.status(500).send('Error');
+    }
+    res.send('Updated');
+  });
 });
 
 const port = process.env.PORT || 3000;
