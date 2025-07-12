@@ -12,9 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-async function gatherData(sql, params = []) {
+// helper to run same query on multiple pools and merge results
+async function gatherData(sql, params = [], usePools = pools) {
   const map = new Map();
-  for (const pool of pools) {
+  for (const pool of usePools) {
+
     try {
       const [rows] = await pool.query(sql, params);
       rows.forEach(r => map.set(r.id, r));
@@ -26,8 +28,14 @@ async function gatherData(sql, params = []) {
 }
 
 // Options endpoints
+// Suppliers table is named differently in one database, so gather from the first two only
 app.get('/api/suppliers', async (req, res) => {
-  const data = await gatherData('SELECT id, name FROM HC_suppliers WHERE is_active = 1');
+  const supplierPools = pools.slice(0, 2);
+  const data = await gatherData(
+    'SELECT id, name FROM HC_suppliers WHERE is_active = 1',
+    [],
+    supplierPools
+  );
   res.json(data);
 });
 
