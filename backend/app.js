@@ -16,6 +16,7 @@ app.use(express.static('public'));
 async function gatherData(sql, params = [], usePools = pools) {
   const map = new Map();
   for (const pool of usePools) {
+
     try {
       const [rows] = await pool.query(sql, params);
       rows.forEach(r => map.set(r.id, r));
