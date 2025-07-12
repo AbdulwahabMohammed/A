@@ -48,6 +48,20 @@ async function search() {
     fromDate: document.getElementById('fromDate').value,
     toDate: document.getElementById('toDate').value
   };
+  if (
+    !data.query &&
+    !data.supplier &&
+    !data.administration &&
+    !data.municipality &&
+    !data.establishment &&
+    !data.fromDate &&
+    !data.toDate
+  ) {
+    const alertBox = document.getElementById('alertMsg');
+    alertBox.classList.remove('d-none');
+    setTimeout(() => alertBox.classList.add('d-none'), 3000);
+    return;
+  }
   const res = await fetch('/api/search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
