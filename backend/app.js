@@ -12,6 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// helper to run same query on multiple pools and merge results
 async function gatherData(sql, params = [], usePools = pools) {
   const map = new Map();
   for (const pool of usePools) {
