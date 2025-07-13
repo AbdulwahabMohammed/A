@@ -110,7 +110,7 @@ app.post('/api/search', async (req, res) => {
         sql += ' AND hc.Facility = ?';
         params.push(establishment);
       }
-      if (status) {
+      if (status !== undefined && status !== '') {
         sql += ' AND hc.status = ?';
         params.push(status);
       }
