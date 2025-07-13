@@ -18,7 +18,6 @@ app.use(express.static('public'));
 async function gatherData(sql, params = [], usePools = pools, altSql) {
   const map = new Map();
   let anySuccess = false;
-
   for (const pool of usePools) {
     try {
       const [rows] = await pool.query(sql, params);
@@ -62,14 +61,6 @@ app.get('/api/administrations', async (req, res) => {
   res.json(data);
 });
 
-app.get('/api/municipalities', async (req, res) => {
-  const { administration } = req.query;
-  if (!administration) return res.json([]);
-  const { data, success } = await gatherData('SELECT id, albaldia FROM HC_albaldia WHERE alamana = ?', [administration]);
-  if (!success) return res.status(500).json([]);
-  res.json(data);
-});
-
 app.get('/api/establishments', async (req, res) => {
   const { supplier } = req.query;
   if (!supplier) return res.json([]);
@@ -87,7 +78,7 @@ app.post('/api/search', async (req, res) => {
     query,
     supplier,
     administration,
-    municipality,
+    status,
     establishment,
     fromDate,
     toDate
@@ -115,13 +106,13 @@ app.post('/api/search', async (req, res) => {
         sql += ' AND hc.alamana = ?';
         params.push(administration);
       }
-      if (municipality) {
-        sql += ' AND hc.albaldia = ?';
-        params.push(municipality);
-      }
       if (establishment) {
         sql += ' AND hc.Facility = ?';
         params.push(establishment);
+      }
+      if (status) {
+        sql += ' AND hc.status = ?';
+        params.push(status);
       }
       if (fromDate && toDate) {
         sql += ' AND hc.addingDate BETWEEN ? AND ?';

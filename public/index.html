@@ -11,7 +11,18 @@
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background-color: #f0f4f8;
     }
-    .results-table th, .results-table td { vertical-align: middle; }
+    .results-table th, .results-table td {
+      vertical-align: middle;
+      text-align: center;
+    }
+    .status-active { color: #0a7; font-weight: bold; }
+    .status-paused { color: #c90; font-weight: bold; }
+    .status-flagged { color: #d00; font-weight: bold; }
+    pre.codebox {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+    }
     .card {
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
@@ -39,8 +50,13 @@
             <select id="administration" class="form-select"></select>
           </div>
           <div class="col-md-4">
-            <label class="form-label">البلدية</label>
-            <select id="municipality" class="form-select"></select>
+            <label class="form-label">حالة الشهادة</label>
+            <select id="status" class="form-select">
+              <option value="">-- الكل --</option>
+              <option value="1">نشطة</option>
+              <option value="0">موقوفة</option>
+              <option value="2">نصاب</option>
+            </select>
           </div>
           <div class="col-md-4">
             <label class="form-label">المنشأة</label>
@@ -67,11 +83,6 @@
       </div>
     </div>
     <div class="mt-4" id="resultsSection" style="display:none;">
-      <div class="d-flex justify-content-end mb-2">
-        <button class="btn btn-success ms-2" id="activateAll"><i class="bi bi-play-fill"></i> تشغيل الكل</button>
-        <button class="btn btn-warning ms-2" id="deactivateAll"><i class="bi bi-pause-fill"></i> إيقاف الكل</button>
-        <button class="btn btn-danger" id="flagAll"><i class="bi bi-exclamation-triangle-fill"></i> وضع نصاب على الكل</button>
-      </div>
       <div class="table-responsive">
       <table class="table table-bordered table-striped results-table">
         <thead class="table-light">
@@ -85,6 +96,11 @@
         </thead>
         <tbody id="results"></tbody>
       </table>
+      </div>
+      <div class="d-flex justify-content-end mt-2">
+        <button class="btn btn-success ms-2" id="activateAll"><i class="bi bi-play-fill"></i> تشغيل الكل</button>
+        <button class="btn btn-warning ms-2" id="deactivateAll"><i class="bi bi-pause-fill"></i> إيقاف الكل</button>
+        <button class="btn btn-danger" id="flagAll"><i class="bi bi-exclamation-triangle-fill"></i> وضع نصاب على الكل</button>
       </div>
     </div>
   </div>

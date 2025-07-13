@@ -18,13 +18,6 @@ async function fetchOptions() {
   populateSelect('administration', await adminRes.json());
 }
 
-async function updateMunicipalities() {
-  const administration = document.getElementById('administration').value;
-  if (!administration) { populateSelect('municipality', []); return; }
-  const res = await fetch(`/api/municipalities?administration=${administration}`);
-  populateSelect('municipality', await res.json());
-}
-
 async function updateEstablishments() {
   const supplier = document.getElementById('supplier').value;
   if (!supplier) { populateSelect('establishment', []); return; }
@@ -33,9 +26,13 @@ async function updateEstablishments() {
 }
 
 function createActionButtons(row, dbIndex) {
-  return `<button class="btn btn-sm btn-success me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 1)"><i class="bi bi-play-fill"></i></button>` +
-         `<button class="btn btn-sm btn-warning me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 0)"><i class="bi bi-pause-fill"></i></button>` +
-         `<button class="btn btn-sm btn-danger" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 2)"><i class="bi bi-exclamation-triangle-fill"></i></button>`;
+  const playBtn = `<button class="btn btn-sm btn-success me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 1)"><i class="bi bi-play-fill"></i></button>`;
+  const pauseBtn = `<button class="btn btn-sm btn-warning me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 0)"><i class="bi bi-pause-fill"></i></button>`;
+  const flagBtn = `<button class="btn btn-sm btn-danger me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 2)"><i class="bi bi-exclamation-triangle-fill"></i></button>`;
+  if (row.status == 1) return pauseBtn + flagBtn;
+  if (row.status == 0) return playBtn + flagBtn;
+  if (row.status == 2) return playBtn + pauseBtn;
+  return '';
 }
 
 async function search() {
@@ -43,7 +40,7 @@ async function search() {
     query: document.getElementById('mainQuery').value,
     supplier: document.getElementById('supplier').value,
     administration: document.getElementById('administration').value,
-    municipality: document.getElementById('municipality').value,
+    status: document.getElementById('status').value,
     establishment: document.getElementById('establishment').value,
     fromDate: document.getElementById('fromDate').value,
     toDate: document.getElementById('toDate').value
@@ -52,8 +49,8 @@ async function search() {
     !data.query &&
     !data.supplier &&
     !data.administration &&
-    !data.municipality &&
     !data.establishment &&
+    !data.status &&
     !data.fromDate &&
     !data.toDate
   ) {
@@ -73,7 +70,8 @@ async function search() {
   results.forEach(r => {
     const tr = document.createElement('tr');
     tr.dataset.index = r.dbIndex;
-    tr.innerHTML = `<td>${r.CertificateNumber}</td><td>${r.PersonName}</td><td>${r.dbIndex}</td><td>${statusText(r.status)}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
+    const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
+    tr.innerHTML = `<td><pre class="codebox">${r.CertificateNumber}</pre></td><td>${r.PersonName}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });
   document.getElementById('resultsSection').style.display = 'block';
@@ -83,6 +81,13 @@ function statusText(status) {
   if (status == 1) return 'نشطة';
   if (status == 0) return 'موقوفة';
   if (status == 2) return 'نصاب';
+  return '';
+}
+
+function statusClass(status) {
+  if (status == 1) return 'status-active';
+  if (status == 0) return 'status-paused';
+  if (status == 2) return 'status-flagged';
   return '';
 }
 
@@ -99,7 +104,6 @@ document.getElementById('searchBtn').addEventListener('click', search);
 document.getElementById('activateAll').addEventListener('click', () => applyAll(1));
 document.getElementById('deactivateAll').addEventListener('click', () => applyAll(0));
 document.getElementById('flagAll').addEventListener('click', () => applyAll(2));
-document.getElementById('administration').addEventListener('change', updateMunicipalities);
 document.getElementById('supplier').addEventListener('change', updateEstablishments);
 
 async function applyAll(status) {
