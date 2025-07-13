@@ -33,7 +33,6 @@ async function gatherData(sql, params = [], usePools = pools, altSql) {
       } else {
         console.error('Query error', err);
       }
-// helper to run same query on multiple pools and merge results
 
     }
   }
@@ -49,8 +48,6 @@ app.get('/api/suppliers', async (req, res) => {
     [],
     pools,
     'SELECT id, name FROM Supplier WHERE is_active = 1'
-
-
   );
   res.json(data);
 });
