@@ -33,6 +33,7 @@ async function gatherData(sql, params = [], usePools = pools, altSql) {
       } else {
         console.error('Query error', err);
       }
+
     }
   }
   return Array.from(map.values());
