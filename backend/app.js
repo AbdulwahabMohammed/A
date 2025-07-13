@@ -61,7 +61,6 @@ app.get('/api/administrations', async (req, res) => {
   res.json(data);
 });
 
-
 app.get('/api/establishments', async (req, res) => {
   const { supplier } = req.query;
   if (!supplier) return res.json([]);
