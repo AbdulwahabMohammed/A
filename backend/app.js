@@ -12,29 +12,45 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// helper to run same query on multiple pools and merge results
-async function gatherData(sql, params = [], usePools = pools) {
+// helper to run the same query on multiple pools and merge results.
+// optional altSql allows falling back to a different table if the first query
+// fails (for example when table names differ between databases)
+async function gatherData(sql, params = [], usePools = pools, altSql) {
   const map = new Map();
   for (const pool of usePools) {
-
     try {
       const [rows] = await pool.query(sql, params);
-      rows.forEach(r => map.set(r.id, r));
+      rows.forEach(r => map.set(`${r.id}-${r.name ?? ''}`, r));
     } catch (err) {
-      console.error('Option query error', err);
+      if (err.code === 'ER_NO_SUCH_TABLE' && altSql) {
+        try {
+          const [rows] = await pool.query(altSql, params);
+          rows.forEach(r => map.set(`${r.id}-${r.name ?? ''}`, r));
+          continue;
+        } catch (err2) {
+          console.error('Alt query error', err2);
+        }
+      } else {
+        console.error('Query error', err);
+      }
+// helper to run same query on multiple pools and merge results
+
     }
   }
   return Array.from(map.values());
 }
 
 // Options endpoints
-// Suppliers table is named differently in one database, so gather from the first two only
+// supplier table name may vary between databases (HC_suppliers or Supplier)
+// gatherData will attempt HC_suppliers first then fall back to Supplier
 app.get('/api/suppliers', async (req, res) => {
-  const supplierPools = pools.slice(0, 2);
   const data = await gatherData(
     'SELECT id, name FROM HC_suppliers WHERE is_active = 1',
     [],
-    supplierPools
+    pools,
+    'SELECT id, name FROM Supplier WHERE is_active = 1'
+
+
   );
   res.json(data);
 });
