@@ -17,15 +17,19 @@ app.use(express.static('public'));
 // fails (for example when table names differ between databases)
 async function gatherData(sql, params = [], usePools = pools, altSql) {
   const map = new Map();
+  let anySuccess = false;
+
   for (const pool of usePools) {
     try {
       const [rows] = await pool.query(sql, params);
       rows.forEach(r => map.set(`${r.id}-${r.name ?? ''}`, r));
+      anySuccess = true;
     } catch (err) {
       if (err.code === 'ER_NO_SUCH_TABLE' && altSql) {
         try {
           const [rows] = await pool.query(altSql, params);
           rows.forEach(r => map.set(`${r.id}-${r.name ?? ''}`, r));
+          anySuccess = true;
           continue;
         } catch (err2) {
           console.error('Alt query error', err2);
@@ -33,34 +37,36 @@ async function gatherData(sql, params = [], usePools = pools, altSql) {
       } else {
         console.error('Query error', err);
       }
-
     }
   }
-  return Array.from(map.values());
+  return { data: Array.from(map.values()), success: anySuccess };
 }
 
 // Options endpoints
 // supplier table name may vary between databases (HC_suppliers or Supplier)
 // gatherData will attempt HC_suppliers first then fall back to Supplier
 app.get('/api/suppliers', async (req, res) => {
-  const data = await gatherData(
+  const { data, success } = await gatherData(
     'SELECT id, name FROM HC_suppliers WHERE is_active = 1',
     [],
     pools,
     'SELECT id, name FROM Supplier WHERE is_active = 1'
   );
+  if (!success) return res.status(500).json([]);
   res.json(data);
 });
 
 app.get('/api/administrations', async (req, res) => {
-  const data = await gatherData('SELECT id, alamana FROM HC_alamanat');
+  const { data, success } = await gatherData('SELECT id, alamana FROM HC_alamanat');
+  if (!success) return res.status(500).json([]);
   res.json(data);
 });
 
 app.get('/api/municipalities', async (req, res) => {
   const { administration } = req.query;
   if (!administration) return res.json([]);
-  const data = await gatherData('SELECT id, albaldia FROM HC_albaldia WHERE alamana = ?', [administration]);
+  const { data, success } = await gatherData('SELECT id, albaldia FROM HC_albaldia WHERE alamana = ?', [administration]);
+  if (!success) return res.status(500).json([]);
   res.json(data);
 });
 
@@ -70,7 +76,8 @@ app.get('/api/establishments', async (req, res) => {
   const sql = `SELECT DISTINCT f.id, f.FacilityName FROM HC_Facility f
                JOIN HC_HealthCertificate hc ON hc.Facility = f.id
                WHERE hc.Supplier = ?`;
-  const data = await gatherData(sql, [supplier]);
+  const { data, success } = await gatherData(sql, [supplier]);
+  if (!success) return res.status(500).json([]);
   res.json(data);
 });
 
@@ -126,7 +133,7 @@ app.post('/api/search', async (req, res) => {
       const [rows] = await pool.query(sql, params);
       rows.forEach(row => results.push(row));
     } catch (err) {
-      console.error('DB error', err);
+      console.error(`DB ${i + 1} error`, err);
     }
   }
   res.json(results);
