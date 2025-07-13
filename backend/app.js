@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// helper to run same query on multiple pools and merge results
+// helper to run the same query on multiple pools and merge results.
 // optional altSql allows falling back to a different table if the first query
 // fails (for example when table names differ between databases)
 async function gatherData(sql, params = [], usePools = pools, altSql) {
