@@ -49,7 +49,11 @@ function renderPage(page) {
     const tr = document.createElement('tr');
     tr.dataset.index = r.dbIndex;
     const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
-    tr.innerHTML = `<td><pre class="codebox">${r.CertificateNumber}</pre></td><td>${r.PersonName}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
+    let link = `https://s.mnaseb.com/lmbolwmy_newsickforemp/Print/nPrint.php?uuid=${r.Code}`;
+    if (r.dbIndex == 1) {
+      link = `https://s.mnaseb.com/lmbolwmy_newsickforemp/Print?uuid=${r.Code}`;
+    }
+    tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });
   const tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -169,4 +173,3 @@ document.addEventListener('DOMContentLoaded', () => {
   const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(t => new bootstrap.Tooltip(t));
 });
-

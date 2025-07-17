@@ -88,7 +88,7 @@ app.post('/api/search', async (req, res) => {
   for (let i = 0; i < pools.length; i++) {
     const pool = pools[i];
     try {
-      let sql = `SELECT hc.certificateNumber AS CertificateNumber, p.name AS PersonName, ${i + 1} AS dbIndex, hc.status
+      let sql = `SELECT hc.certificateNumber AS CertificateNumber, hc.code AS Code, p.name AS PersonName, ${i + 1} AS dbIndex, hc.status
                  FROM HC_HealthCertificate hc
                  LEFT JOIN HC_Person p ON hc.Person = p.id
                  LEFT JOIN HC_Facility f ON hc.Facility = f.id
