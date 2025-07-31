@@ -4,6 +4,9 @@ const cors = require('cors');
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
+require('dotenv').config();
 
 const { pools } = require('./db');
 
@@ -11,6 +14,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || '';
 
 // helper to run the same query on multiple pools and merge results.
 // optional altSql allows falling back to a different table if the first query
@@ -147,15 +152,37 @@ app.post('/api/updateStatus', async (req, res) => {
 });
 
 // GitHub webhook to update repo on push
-app.post('/webhook', (req, res) => {
+app.post('/webhook', bodyParser.raw({ type: '*/*' }), (req, res) => {
   const event = req.get('X-GitHub-Event');
   const userAgent = req.get('User-Agent') || '';
   if (req.method !== 'POST' || !event || !userAgent.startsWith('GitHub-Hookshot')) {
     return res.status(400).send('Invalid request');
   }
 
+  // Verify GitHub signature
+  if (WEBHOOK_SECRET) {
+    const sig256 = req.get('X-Hub-Signature-256');
+    const sig = req.get('X-Hub-Signature');
+    let expected;
+    if (sig256) {
+      const hmac = crypto.createHmac('sha256', WEBHOOK_SECRET).update(req.body).digest('hex');
+      expected = `sha256=${hmac}`;
+      if (!crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(sig256))) {
+        return res.status(401).send('Signature mismatch');
+      }
+    } else if (sig) {
+      const hmac = crypto.createHmac('sha1', WEBHOOK_SECRET).update(req.body).digest('hex');
+      expected = `sha1=${hmac}`;
+      if (!crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(sig))) {
+        return res.status(401).send('Signature mismatch');
+      }
+    } else {
+      return res.status(401).send('No signature');
+    }
+  }
+
   const repoDir = path.resolve(__dirname, '..');
-  exec('git pull', { cwd: repoDir }, (err, stdout, stderr) => {
+  exec('git pull', { cwd: repoDir }, (err) => {
     const logMessage = `${new Date().toISOString()} - pull ${err ? 'failed' : 'success'}\n`;
     fs.appendFile(path.join(repoDir, 'webhook.log'), logMessage, () => {});
     if (err) {
