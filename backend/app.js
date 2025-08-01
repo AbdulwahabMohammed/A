@@ -121,8 +121,17 @@ app.post('/api/search', async (req, res) => {
                  WHERE 1=1`;
       const params = [];
       if (query) {
-        sql += ' AND (hc.certificateNumber LIKE ? OR hc.code LIKE ? OR f.FacilityNumber LIKE ? OR f.licenseNumber LIKE ?)';
-        params.push(`%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`);
+        sql += ' AND (hc.certificateNumber LIKE ? OR hc.code LIKE ? OR f.FacilityNumber LIKE ? OR f.licenseNumber LIKE ? OR p.NationalIdentificationNo LIKE ? OR p.name LIKE ? OR s.name LIKE ? OR f.FacilityName LIKE ?)';
+        params.push(
+          `%${query}%`,
+          `%${query}%`,
+          `%${query}%`,
+          `%${query}%`,
+          `%${query}%`,
+          `%${query}%`,
+          `%${query}%`,
+          `%${query}%`
+        );
       }
       if (supplier) {
         sql += ' AND hc.Supplier = ?';
