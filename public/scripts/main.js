@@ -168,7 +168,19 @@ function clearSearch() {
 }
 
 // enable Bootstrap tooltips
+async function setAddLink() {
+  try {
+    const res = await fetch('/api/addUrl');
+    const { url } = await res.json();
+    const btn = document.getElementById('addBtn');
+    if (btn) btn.href = url;
+  } catch (err) {
+    console.error('Failed to fetch add URL', err);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(t => new bootstrap.Tooltip(t));
+  setAddLink();
 });
