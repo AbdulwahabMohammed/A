@@ -52,7 +52,7 @@ function renderPage(page) {
     tr.dataset.index = r.dbIndex;
     const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
     const link = `${r.printUrl}${r.Code}`;
-    tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.SupplierName || ''}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
+    tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });
   const tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
