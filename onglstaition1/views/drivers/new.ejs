@@ -1,0 +1,30 @@
+<div class="card card-form">
+<form method="POST" action="/nagl/drivers">
+  <input type="hidden" name="next" value="<%= next %>">
+  <% if (facilityId) { %>
+  <input type="hidden" name="FacilityID" value="<%= facilityId %>">
+  <% } else { %>
+  <div class="mb-3">
+    <label class="form-label">المنشأة</label>
+    <select name="FacilityID" class="form-select select2">
+      <% facilities.forEach(f => { %>
+        <option value="<%= f.FacilityID %>"><%= f.Name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <% } %>
+  <div class="mb-3">
+    <label class="form-label">رقم هوية السائق</label>
+    <input type="text" name="IdentityNumber" class="form-control" value="<%= identity %>" readonly>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">الاسم الأول</label>
+    <input type="text" name="FirstName" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">اسم العائلة</label>
+    <input type="text" name="LastName" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">متابعة</button>
+</form>
+</div>

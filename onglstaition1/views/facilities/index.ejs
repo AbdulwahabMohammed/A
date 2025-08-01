@@ -1,0 +1,21 @@
+<a href="/nagl/facilities/new" target="_blank" class="btn btn-primary mb-2">إضافة منشأة</a>
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover data-table results-table">
+  <thead>
+    <tr>
+      <th>الاسم</th>
+      <th>رقم الهوية</th>
+      <th>نوع الترخيص</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% facilities.forEach(f => { %>
+      <tr>
+        <td><pre class="codebox"><%= f.Name %></pre></td>
+        <td><pre class="codebox"><%= f.IdentityNumber %></pre></td>
+        <td><pre class="codebox"><%= f.LicenseType || '' %></pre></td>
+      </tr>
+      <% }) %>
+    </tbody>
+</table>
+</div>

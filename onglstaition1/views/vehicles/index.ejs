@@ -1,0 +1,21 @@
+<a href="/nagl/vehicles/new" target="_blank" class="btn btn-primary mb-2">إضافة مركبة</a>
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover data-table results-table">
+  <thead>
+    <tr>
+      <th>رقم اللوحة</th>
+      <th>الرقم التسلسلي</th>
+      <th>المنشأة</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% vehicles.forEach(v => { %>
+      <tr>
+        <td><pre class="codebox"><%= v.PlateNumber || '' %></pre></td>
+        <td><pre class="codebox"><%= v.SerialNumber || '' %></pre></td>
+        <td><pre class="codebox"><%= v.Name || '' %></pre></td>
+      </tr>
+      <% }) %>
+    </tbody>
+</table>
+</div>

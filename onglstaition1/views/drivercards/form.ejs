@@ -1,0 +1,61 @@
+<div class="card card-form">
+<form method="POST" action="<%= card ? '/nagl/driver-cards/' + card.ID : '/nagl/driver-cards' %>">
+  <h5 class="mb-3">معلومات البطاقة</h5>
+
+  <div class="mb-3">
+    <label class="form-label">نوع البطاقة</label>
+    <input type="text" name="CardType" class="form-control" value="<%= card ? card.CardType : '' %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">المنشأة</label>
+    <div class="input-group">
+      <select name="FacilityID" class="form-select select2" required <%= lockFacility ? 'disabled' : '' %>>
+        <% facilities.forEach(f => { %>
+          <option value="<%= f.FacilityID %>" <%= (card && card.FacilityID === f.FacilityID) || (facility && facility.FacilityID === f.FacilityID) ? 'selected' : '' %>><%= f.Name %> - <%= f.IdentityNumber %> - <%= f.LicenseType || '' %></option>
+        <% }) %>
+      </select>
+      <% if (!lockFacility) { %>
+      <a href="/nagl/facilities/new" target="_blank" id="addFacilityBtn" class="btn btn-outline-secondary btn-icon"><i class="bi bi-plus"></i></a>
+      <% } %>
+      <% if (lockFacility) { %><input type="hidden" name="FacilityID" value="<%= facility.FacilityID %>"><% } %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">السائق</label>
+    <div class="input-group">
+      <select name="DriverID" class="form-select select2" required <%= lockDriver ? 'disabled' : '' %>>
+        <% drivers.forEach(d => { %>
+          <option value="<%= d.DriverID %>" <%= (card && card.DriverID === d.DriverID) || (driver && driver.DriverID === d.DriverID) ? 'selected' : '' %>><%= d.FirstName %> <%= d.LastName %> - <%= d.IdentityNumber || '' %></option>
+        <% }) %>
+      </select>
+      <% if (!lockDriver) { %>
+      <a href="#" target="_blank" id="addDriverBtn" class="btn btn-outline-secondary btn-icon"><i class="bi bi-plus"></i></a>
+      <% } %>
+      <% if (lockDriver) { %><input type="hidden" name="DriverID" value="<%= driver.DriverID %>"><% } %>
+    </div>
+  </div>
+
+  <h5 class="mt-4 mb-3">التواريخ والمورد</h5>
+
+  <div class="mb-3">
+    <label class="form-label">تاريخ الإصدار</label>
+    <input type="text" name="IssueDate" class="form-control hijri-date" value="<%= card ? card.IssueDate : '' %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">تاريخ الانتهاء</label>
+    <input type="text" name="ExpirationDate" class="form-control hijri-date" value="<%= card ? card.ExpirationDate : '' %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">المورد</label>
+    <select name="Supplier" class="form-select select2">
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s.id %>" <%= card && card.Supplier === s.id ? 'selected' : '' %>><%= s.name %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-success">حفظ</button>
+</form>
+</div>
