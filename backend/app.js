@@ -19,8 +19,10 @@ const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || '';
 
 // helper to run the same query on multiple pools and merge results.
 // optional altSql allows falling back to a different table if the first query
-// fails (for example when table names differ between databases)
-async function gatherData(sql, params = [], usePools = pools, altSql) {
+// fails (for example when table names differ between databases). A second
+// fallback query can be provided to handle cases where altSql itself fails
+// with a specific error (e.g. ER_BAD_FIELD_ERROR)
+async function gatherData(sql, params = [], usePools = pools, altSql, altSql2) {
   const map = new Map();
   let anySuccess = false;
   for (const pool of usePools) {
@@ -36,6 +38,16 @@ async function gatherData(sql, params = [], usePools = pools, altSql) {
           anySuccess = true;
           continue;
         } catch (err2) {
+          if (err2.code === 'ER_BAD_FIELD_ERROR' && altSql2) {
+            try {
+              const [rows] = await pool.query(altSql2, params);
+              rows.forEach(r => map.set(`${r.id}-${r.name ?? ''}`, r));
+              anySuccess = true;
+              continue;
+            } catch (err3) {
+              console.error('Second alt query error', err3);
+            }
+          }
           console.error('Alt query error', err2);
         }
       } else {
@@ -48,13 +60,15 @@ async function gatherData(sql, params = [], usePools = pools, altSql) {
 
 // Options endpoints
 // supplier table name may vary between databases (HC_suppliers or Supplier)
-// gatherData will attempt HC_suppliers first then fall back to Supplier
+// gatherData will attempt HC_suppliers first then fall back to Supplier and
+// finally to a non-filtered Supplier query when needed
 app.get('/api/suppliers', async (req, res) => {
   const { data, success } = await gatherData(
     'SELECT id, name FROM HC_suppliers WHERE is_active = 1',
     [],
     pools,
-    'SELECT id, name FROM Supplier WHERE is_active = 1'
+    'SELECT id, name FROM Supplier WHERE is_active = 1',
+    'SELECT id, name FROM Supplier'
   );
   if (!success) return res.status(500).json([]);
   res.json(data);
