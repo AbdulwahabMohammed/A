@@ -91,6 +91,11 @@ app.get('/api/establishments', async (req, res) => {
   res.json(data);
 });
 
+// Endpoint to retrieve the configured URL for adding certificates
+app.get('/api/addUrl', (req, res) => {
+  res.json({ url: process.env.ADD_CERT_URL || '' });
+});
+
 // Advanced search endpoint
 app.post('/api/search', async (req, res) => {
   const {
