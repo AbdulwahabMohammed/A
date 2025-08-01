@@ -29,10 +29,11 @@ function createActionButtons(row, dbIndex) {
   const playBtn = `<button class="btn btn-sm btn-success me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 1)" data-bs-toggle="tooltip" title="تشغيل الشهادة"><i class="bi bi-play-fill"></i></button>`;
   const pauseBtn = `<button class="btn btn-sm btn-warning me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 0)" data-bs-toggle="tooltip" title="إيقاف الشهادة"><i class="bi bi-pause-fill"></i></button>`;
   const flagBtn = `<button class="btn btn-sm btn-danger me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 2)" data-bs-toggle="tooltip" title="وضع كـ نصاب"><i class="bi bi-exclamation-triangle-fill"></i></button>`;
-  if (row.status == 1) return pauseBtn + flagBtn;
-  if (row.status == 0) return playBtn + flagBtn;
-  if (row.status == 2) return playBtn + pauseBtn;
-  return '';
+  const editBtn = `<a class="btn btn-sm btn-info me-1" href="${row.editUrl}${row.PersonId}" target="_blank" data-bs-toggle="tooltip" title="تحرير"><i class="bi bi-pencil-fill"></i></a>`;
+  if (row.status == 1) return pauseBtn + flagBtn + editBtn;
+  if (row.status == 0) return playBtn + flagBtn + editBtn;
+  if (row.status == 2) return playBtn + pauseBtn + editBtn;
+  return editBtn;
 }
 
 let searchResults = [];
@@ -49,10 +50,7 @@ function renderPage(page) {
     const tr = document.createElement('tr');
     tr.dataset.index = r.dbIndex;
     const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
-    let link = `https://s.mnaseb.com/lmbolwmy_newsickforemp/Print/nPrint.php?uuid=${r.Code}`;
-    if (r.dbIndex == 1) {
-      link = `https://s.mnaseb.com/lmbolwmy_newsickforemp/Print?uuid=${r.Code}`;
-    }
+    const link = `${r.printUrl}${r.UUID}`;
     tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });

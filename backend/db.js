@@ -8,25 +8,31 @@ const dbConfigs = [
     port: process.env.DB1_PORT,
     database: process.env.DB1_DATABASE,
     user: process.env.DB1_USER,
-    password: process.env.DB1_PASSWORD
+    password: process.env.DB1_PASSWORD,
+    printUrl: process.env.DB1_PRINT_URL,
+    editUrl: process.env.DB1_EDIT_URL
   },
   {
     host: process.env.DB2_HOST,
     port: process.env.DB2_PORT,
     database: process.env.DB2_DATABASE,
     user: process.env.DB2_USER,
-    password: process.env.DB2_PASSWORD
+    password: process.env.DB2_PASSWORD,
+    printUrl: process.env.DB2_PRINT_URL,
+    editUrl: process.env.DB2_EDIT_URL
   },
   {
     host: process.env.DB3_HOST,
     port: process.env.DB3_PORT,
     database: process.env.DB3_DATABASE,
     user: process.env.DB3_USER,
-    password: process.env.DB3_PASSWORD
+    password: process.env.DB3_PASSWORD,
+    printUrl: process.env.DB3_PRINT_URL,
+    editUrl: process.env.DB3_EDIT_URL
   }
 ];
 
-const pools = dbConfigs.map(cfg =>
+const pools = dbConfigs.map(({ printUrl, editUrl, ...cfg }) =>
   mysql.createPool({
     ...cfg,
     charset: 'utf8mb4',
@@ -48,4 +54,4 @@ async function testConnections() {
 
 testConnections();
 
-module.exports = { pools };
+module.exports = { pools, dbConfigs };
