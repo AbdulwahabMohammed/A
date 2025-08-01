@@ -1,0 +1,21 @@
+<div class="card card-form">
+<form method="POST" action="/nagl/vehicles">
+  <div class="mb-3">
+    <label class="form-label">المنشأة</label>
+    <select name="FacilityID" class="form-select select2">
+      <% facilities.forEach(f => { %>
+        <option value="<%= f.FacilityID %>" <%= facilityId == f.FacilityID ? 'selected' : '' %>><%= f.Name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">رقم اللوحة</label>
+    <input type="text" name="PlateNumber" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">الرقم التسلسلي</label>
+    <input type="text" name="SerialNumber" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">حفظ</button>
+</form>
+</div>

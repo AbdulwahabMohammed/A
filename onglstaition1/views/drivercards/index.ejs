@@ -1,0 +1,36 @@
+<a href="/nagl/driver-cards/new" class="btn btn-primary mb-2 btn-icon"><i class="bi bi-plus"></i> إضافة بطاقة سائق</a>
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover data-table results-table">
+  <thead>
+    <tr>
+      <th>رقم البطاقة</th>
+      <th>نوع البطاقة</th>
+      <th>السائق</th>
+      <th>المنشأة</th>
+      <th class="hide-mobile">تاريخ الإصدار</th>
+      <th class="hide-mobile">تاريخ الانتهاء</th>
+      <th class="hide-mobile">المندوب</th>
+      <th>إجراءات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cards.forEach(c => { %>
+      <tr>
+        <td><pre class="codebox"><a href="https://s.mnaseb.com/h/OPcard/driver.php?token=<%= c.token %>" target="_blank"><%= c.CardNumber %></a></pre></td>
+        <td><pre class="codebox"><%= c.CardType %></pre></td>
+        <td><pre class="codebox"><%= c.FirstName || '' %></pre></td>
+        <td><pre class="codebox"><%= c.Name || '' %></pre></td>
+        <td class="hide-mobile"><pre class="codebox"><%= c.IssueDate %></pre></td>
+        <td class="hide-mobile"><pre class="codebox"><%= c.ExpirationDate %></pre></td>
+        <td class="hide-mobile"><pre class="codebox"><%= c.SupplierName || '' %></pre></td>
+        <td>
+          <a href="/nagl/driver-cards/<%= c.ID %>/edit" class="btn btn-sm btn-outline-primary">تعديل</a>
+          <form method="POST" action="/nagl/driver-cards/<%= c.ID %>/delete" style="display:inline">
+            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('حذف؟')">حذف</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+</div>

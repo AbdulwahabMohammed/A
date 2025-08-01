@@ -1,0 +1,21 @@
+<a href="/nagl/drivers/new" target="_blank" class="btn btn-primary mb-2">إضافة سائق</a>
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover data-table results-table">
+  <thead>
+    <tr>
+      <th>الاسم</th>
+      <th>رقم الهوية</th>
+      <th>المنشأة</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% drivers.forEach(d => { %>
+      <tr>
+        <td><pre class="codebox"><%= d.FirstName %> <%= d.LastName %></pre></td>
+        <td><pre class="codebox"><%= d.IdentityNumber || '' %></pre></td>
+        <td><pre class="codebox"><%= d.FacilityName || '' %></pre></td>
+      </tr>
+      <% }) %>
+    </tbody>
+</table>
+</div>

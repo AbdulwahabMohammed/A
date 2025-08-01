@@ -1,0 +1,18 @@
+<div class="card card-form">
+<form method="POST" action="/nagl/facilities">
+  <input type="hidden" name="next" value="<%= next %>">
+  <div class="mb-3">
+    <label class="form-label">رقم الهوية</label>
+    <input type="text" name="IdentityNumber" class="form-control" value="<%= identity || '' %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">اسم المنشأة</label>
+    <input type="text" name="Name" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">الاسم بالإنجليزية</label>
+    <input type="text" name="EnglishName" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">متابعة</button>
+</form>
+</div>

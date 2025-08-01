@@ -1,0 +1,13 @@
+<div class="card card-form">
+<form method="POST" action="/nagl/driver-cards/new/<%= facilityId %>/driver">
+  <div class="mb-3">
+    <label class="form-label">المنشأة</label>
+    <input type="text" class="form-control" value="<%= facilityName %>" readonly>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">رقم هوية السائق</label>
+    <input type="text" name="IdentityNumber" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">متابعة</button>
+</form>
+</div>
