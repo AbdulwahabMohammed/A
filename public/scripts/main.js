@@ -29,7 +29,8 @@ function createActionButtons(row, dbIndex) {
   const playBtn = `<button class="btn btn-sm btn-success me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 1)" data-bs-toggle="tooltip" title="تشغيل الشهادة"><i class="bi bi-play-fill"></i></button>`;
   const pauseBtn = `<button class="btn btn-sm btn-warning me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 0)" data-bs-toggle="tooltip" title="إيقاف الشهادة"><i class="bi bi-pause-fill"></i></button>`;
   const flagBtn = `<button class="btn btn-sm btn-danger me-1" onclick="updateStatus(${dbIndex}, '${row.CertificateNumber}', 2)" data-bs-toggle="tooltip" title="وضع كـ نصاب"><i class="bi bi-exclamation-triangle-fill"></i></button>`;
-  const editBtn = `<a class="btn btn-sm btn-info me-1" href="${row.editUrl}${row.PersonId}" target="_blank" data-bs-toggle="tooltip" title="تحرير"><i class="bi bi-pencil-fill"></i></a>`;
+  const editBtn =
+    `<a class="btn btn-sm btn-info me-1" href="${row.editUrl}${row.PersonId}?showdetail=HC_HealthCertificate" target="_blank" data-bs-toggle="tooltip" title="تحرير"><i class="bi bi-pencil-fill"></i></a>`;
   if (row.status == 1) return pauseBtn + flagBtn + editBtn;
   if (row.status == 0) return playBtn + flagBtn + editBtn;
   if (row.status == 2) return playBtn + pauseBtn + editBtn;
