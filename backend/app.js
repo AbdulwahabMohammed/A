@@ -113,10 +113,11 @@ app.post('/api/search', async (req, res) => {
     const pool = pools[i];
     try {
       let sql = `SELECT hc.certificateNumber AS CertificateNumber, hc.code AS Code, p.name AS PersonName,
-                 ${i + 1} AS dbIndex, hc.status, p.id AS PersonId
+                 s.name AS SupplierName, ${i + 1} AS dbIndex, hc.status, p.id AS PersonId
                  FROM HC_HealthCertificate hc
                  LEFT JOIN HC_Person p ON hc.Person = p.id
                  LEFT JOIN HC_Facility f ON hc.Facility = f.id
+                 LEFT JOIN HC_suppliers s ON hc.Supplier = s.id
                  WHERE 1=1`;
       const params = [];
       if (query) {
@@ -146,7 +147,17 @@ app.post('/api/search', async (req, res) => {
         sql += ' AND hc.addingDate >= ?';
         params.push(fromDate);
       }
-      const [rows] = await pool.query(sql, params);
+      let rows;
+      try {
+        [rows] = await pool.query(sql, params);
+      } catch (err1) {
+        if (err1.code === 'ER_NO_SUCH_TABLE') {
+          const altSql = sql.replace('HC_suppliers', 'Supplier');
+          [rows] = await pool.query(altSql, params);
+        } else {
+          throw err1;
+        }
+      }
       rows.forEach(row =>
         results.push({
           ...row,
