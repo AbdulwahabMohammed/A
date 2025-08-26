@@ -28,12 +28,11 @@ const dbConfigs = [
     user: process.env.DB3_USER,
     password: process.env.DB3_PASSWORD,
     printUrl: process.env.DB3_PRINT_URL,
-    editUrl: process.env.DB3_EDIT_URL,
-    ryadhPrintUrl: process.env.DB3_ryadh_PRINT_URL
+    editUrl: process.env.DB3_EDIT_URL
   }
 ];
 
-const pools = dbConfigs.map(({ printUrl, editUrl, ryadhPrintUrl, ...cfg }) =>
+const pools = dbConfigs.map(({ printUrl, editUrl, ...cfg }) =>
   mysql.createPool({
     ...cfg,
     charset: 'utf8mb4',
