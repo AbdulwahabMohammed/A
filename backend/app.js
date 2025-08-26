@@ -180,8 +180,7 @@ app.post('/api/search', async (req, res) => {
           ...row,
           document_id: row.document_id,
           printUrl: dbConfigs[i].printUrl,
-          editUrl: dbConfigs[i].editUrl,
-          ryadhPrintUrl: dbConfigs[i].ryadhPrintUrl
+          editUrl: dbConfigs[i].editUrl
         })
       );
     } catch (err) {
