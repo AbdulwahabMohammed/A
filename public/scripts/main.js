@@ -52,7 +52,11 @@ function renderPage(page) {
     tr.dataset.index = r.dbIndex;
     r.suffixurl = '&view=1';
     const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
-    const link = `${r.printUrl}${r.Code}`;
+    let baseUrl = r.printUrl;
+    if (r.document_id == 4 && r.ryadhPrintUrl) {
+      baseUrl = r.ryadhPrintUrl;
+    }
+    const link = `${baseUrl}${r.Code}`;
     tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.SupplierName || ''}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });
