@@ -51,14 +51,8 @@ function renderPage(page) {
     const tr = document.createElement('tr');
     tr.dataset.index = r.dbIndex;
     const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
-    let defaultLink = `${r.printUrl}${r.Code}`;
-    if (!defaultLink.includes('view=')) defaultLink += '&view=1';
-    let links = `<a href="${defaultLink}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a>`;
-    if (r.document_id == 4) {
-      const riyadhLink = `${r.printUrl}${r.Code}&view=4`;
-      links += ` <a href="${riyadhLink}" target="_blank" title="طباعة أمانة الرياض"><i class="bi bi-printer-fill"></i></a>`;
-    }
-    tr.innerHTML = `<td>${links}</td><td>${r.PersonName}</td><td>${r.SupplierName || ''}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
+    const link = `${r.printUrl}${r.Code}&view=4`;
+    tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.SupplierName || ''}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });
   const tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
