@@ -113,7 +113,7 @@ app.post('/api/search', async (req, res) => {
     const pool = pools[i];
     try {
       let sql = `SELECT hc.certificateNumber AS CertificateNumber, hc.code AS Code, p.name AS PersonName,
-                 s.name AS SupplierName, ${i + 1} AS dbIndex, hc.status, p.id AS PersonId
+                 s.name AS SupplierName, ${i + 1} AS dbIndex, hc.status, hc.document_id AS document_id, p.id AS PersonId
                  FROM HC_HealthCertificate hc
                  LEFT JOIN HC_Person p ON hc.Person = p.id
                  LEFT JOIN HC_Facility f ON hc.Facility = f.id
@@ -178,6 +178,7 @@ app.post('/api/search', async (req, res) => {
       rows.forEach(row =>
         results.push({
           ...row,
+          document_id: row.document_id,
           printUrl: dbConfigs[i].printUrl,
           editUrl: dbConfigs[i].editUrl
         })
