@@ -50,8 +50,9 @@ function renderPage(page) {
   pageData.forEach(r => {
     const tr = document.createElement('tr');
     tr.dataset.index = r.dbIndex;
+    r.suffixurl = '&view=1';
     const statusCell = `<span class="${statusClass(r.status)}">${statusText(r.status)}</span>`;
-    const link = `${r.printUrl}${r.Code}&view=4`;
+    const link = `${r.printUrl}${r.Code}`;
     tr.innerHTML = `<td><a href="${link}" target="_blank"><pre class="codebox">${r.CertificateNumber}</pre></a></td><td>${r.PersonName}</td><td>${r.SupplierName || ''}</td><td>${r.dbIndex}</td><td>${statusCell}</td><td>${createActionButtons(r, r.dbIndex)}</td>`;
     tbody.appendChild(tr);
   });
