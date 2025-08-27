@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/app.js"
+    "start": "node backend/app.js",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",

@@ -33,6 +33,22 @@ const dbConfigs = [
   }
 ];
 
+function validateDB1Config() {
+  const required = ['DB1_HOST', 'DB1_DATABASE', 'DB1_USER', 'DB1_PASSWORD'];
+  const missing = required.filter((key) => !process.env[key]);
+  if (missing.length) {
+    console.warn(
+      `Missing DB1 env variables: ${missing.join(', ')}. Skipping DB1 pool.`
+    );
+    return false;
+  }
+  return true;
+}
+
+if (!validateDB1Config()) {
+  dbConfigs.shift();
+}
+
 const pools = dbConfigs.map(({ printUrl, editUrl, ryadhPrintUrl, ...cfg }) =>
   mysql.createPool({
     ...cfg,
